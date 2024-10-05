@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: '0 */1 * * *'  # Exécute toutes les 6 heures
+    - cron: '0 */1 * * *'  # Exécute toutes les 1 heure
   push:
     branches:
       - main
@@ -10,6 +10,8 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Donne les permissions nécessaires pour effectuer des commits
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
