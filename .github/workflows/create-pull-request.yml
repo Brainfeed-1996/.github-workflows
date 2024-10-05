@@ -1,1 +1,32 @@
+name: Create Pull Request
 
+on:
+  schedule:
+    - cron: '0 */1 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Donne les permissions nécessaires pour effectuer des commits et des pull requests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Make changes
+        run: |
+          echo "Some changes made on $(date)" >> changes.txt
+          git add changes.txt
+          git commit -m "Automated changes on $(date)"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Automated changes on $(date)
+          branch: automated-changes
+          title: "Automated changes on $(date)"
+          body: "This pull request contains automated changes made on $(date)."
