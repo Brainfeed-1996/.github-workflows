@@ -2,8 +2,8 @@ name: Auto Pull Request
 
 on:
   schedule:
-    - cron: "* * * * *" # Exécute le workflow toutes les minutes
-  workflow_dispatch: # Permet un lancement manuel
+    - cron: "*/5 * * * *" # Exécuter toutes les minutes (⚠ GitHub peut limiter à 5 min)
+  workflow_dispatch:
 
 jobs:
   create-pull-request:
