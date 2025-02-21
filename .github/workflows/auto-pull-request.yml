@@ -2,7 +2,7 @@ name: Auto Pull Request
 
 on:
   schedule:
-    - cron: "0 * * * *" # Exécuter toutes les heures (HH:00)
+    - cron: "* * * * *" # Exécute le workflow toutes les minutes
   workflow_dispatch: # Permet un lancement manuel
 
 jobs:
